@@ -73,6 +73,15 @@ cd VibeVoice/
 uv pip install -e .
 ```
 
+### Docker
+
+```bash
+docker compose up --build
+# then open http://localhost:7860
+```
+
+The first start downloads `vibevoice/VibeVoice-1.5B` into the `hf-cache` volume. To use an NVIDIA GPU, uncomment the `deploy` section in `docker-compose.yml`.
+
 ## Usage
 
 ### 🚨 Tips

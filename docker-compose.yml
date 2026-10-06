@@ -1,0 +1,20 @@
+services:
+  vibevoice:
+    build: .
+    image: vibevoice-demo
+    ports:
+      - "127.0.0.1:7860:7860"
+    volumes:
+      # Model weights are downloaded once and kept here between runs
+      - hf-cache:/root/.cache/huggingface
+    # Uncomment to use an NVIDIA GPU (needs the NVIDIA Container Toolkit)
+    # deploy:
+    #   resources:
+    #     reservations:
+    #       devices:
+    #         - driver: nvidia
+    #           count: all
+    #           capabilities: [gpu]
+
+volumes:
+  hf-cache:

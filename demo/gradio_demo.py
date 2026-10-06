@@ -1107,6 +1107,12 @@ def parse_args():
         help="Port to run the demo on",
     )
     parser.add_argument(
+        "--host",
+        type=str,
+        default=None,
+        help="Interface to bind to (default: 0.0.0.0 with --share, else 127.0.0.1). Use 0.0.0.0 inside Docker.",
+    )
+    parser.add_argument(
         "--checkpoint_path",
         type=str,
         default=None,
@@ -1148,8 +1154,8 @@ def main():
             default_concurrency_limit=1  # Process one request at a time
         ).launch(
             share=args.share,
-            # server_port=args.port,
-            server_name="0.0.0.0" if args.share else "127.0.0.1",
+            server_port=args.port,
+            server_name=args.host or ("0.0.0.0" if args.share else "127.0.0.1"),
             show_error=True,
             show_api=False  # Hide API docs for cleaner interface
         )
